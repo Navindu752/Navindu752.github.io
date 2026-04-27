@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiExternalLink } from "react-icons/fi";
 import type { Project } from "../data/projects";
 
 interface ProjectCardProps {
