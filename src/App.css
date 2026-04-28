@@ -1,1 +1,85 @@
+@import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #0ea5e9, #8b5cf6);
+  border-radius: 99px;
+}
+::selection { background: rgba(14,165,233,0.2); color: #0ea5e9; }
+
+.gradient-text {
+  background: linear-gradient(135deg, #0ea5e9 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(14,165,233,0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(14,165,233,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14,165,233,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.float { animation: float 6s ease-in-out infinite; }
+
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #0ea5e9, #8b5cf6, #0ea5e9);
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+  z-index: 9999;
+  transform-origin: left;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(14,165,233,0.3), rgba(139,92,246,0.3), transparent);
+}

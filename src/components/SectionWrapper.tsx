@@ -10,8 +10,12 @@ interface SectionWrapperProps {
 }
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
+  hidden: { opacity: 0, y: 48 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: EASE_OUT },
+  },
 };
 
 export default function SectionWrapper({ id, children, className = "" }: SectionWrapperProps) {
@@ -19,16 +23,17 @@ export default function SectionWrapper({ id, children, className = "" }: Section
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id={id} className={`py-20 md:py-28 ${className}`}>
+    <section id={id} className={`py-24 md:py-32 relative overflow-hidden ${className}`}>
       <motion.div
         ref={ref}
         variants={fadeUp}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
-        className="max-w-6xl mx-auto px-6 lg:px-8"
+        className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10"
       >
         {children}
       </motion.div>
     </section>
   );
 }
+

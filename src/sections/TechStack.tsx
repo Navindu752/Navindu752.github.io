@@ -31,7 +31,9 @@ const techs = [
 
 export default function TechStack() {
   return (
-    <SectionWrapper id="techstack" className="bg-gray-50 dark:bg-gray-900/40">
+    <SectionWrapper id="techstack" className="bg-gray-50 dark:bg-[#060b18]">
+      <div className="absolute inset-x-0 top-0 h-px section-divider" />
+
       <SectionHeading
         label="Tools"
         title="Tech Stack"
@@ -39,23 +41,29 @@ export default function TechStack() {
         centered
       />
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
         {techs.map((tech, idx) => (
           <motion.div
             key={tech.name}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.75, y: 16 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true, margin: "-20px" }}
-            transition={{ duration: 0.4, delay: idx * 0.04, ease: EASE_OUT }}
-            whileHover={{ y: -4, scale: 1.06 }}
-            className="group flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-sky-500/50 dark:hover:border-sky-500/40 transition-all duration-300 hover:shadow-lg cursor-default"
+            transition={{ duration: 0.45, delay: idx * 0.035, ease: EASE_OUT }}
+            whileHover={{ y: -6, scale: 1.08, transition: { duration: 0.25, ease: EASE_OUT } }}
+            className="group flex flex-col items-center gap-2.5 p-4 rounded-2xl bg-white dark:bg-gray-900/70 border border-gray-200 dark:border-white/[0.07] hover:border-sky-500/40 dark:hover:border-sky-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-sky-500/10 cursor-default relative overflow-hidden"
           >
+            {/* Glow on hover */}
+            <div
+              className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-sm"
+              style={{ background: tech.color }}
+            />
+
             <tech.Icon
               size={28}
               style={{ color: tech.color }}
-              className="transition-transform duration-300 group-hover:scale-110"
+              className="relative transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
             />
-            <span className="text-xs font-medium text-gray-600 dark:text-gray-400 text-center leading-tight">
+            <span className="relative text-[11px] font-semibold text-gray-600 dark:text-gray-400 text-center leading-tight group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
               {tech.name}
             </span>
           </motion.div>
@@ -64,3 +72,4 @@ export default function TechStack() {
     </SectionWrapper>
   );
 }
+
